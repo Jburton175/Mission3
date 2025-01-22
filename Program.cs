@@ -29,9 +29,10 @@ do {
     System.Console.WriteLine("Type \"Exit\" to leave the program.");
     System.Console.WriteLine("");
 
-    action = System.Console.ReadLine();
+    action = System.Console.ReadLine().ToLower();
 
-    if (action.ToLower() == "add")
+    // add a food item
+    if (action == "add")
     {
         string itemName = "";
         string itemCategory = "";
@@ -76,7 +77,8 @@ do {
 
 
     }
-    else if (action.ToLower() == "delete")
+    // delete a food item
+    else if (action == "delete")
     {
         string nameToDelete = "";
 
@@ -86,7 +88,7 @@ do {
 
         nameToDelete = System.Console.ReadLine();
 
-
+        // search for selected food name to see if we should remove it
         FoodBankTools itemToRemove = Items.Find(item => item.ItemName.Equals(nameToDelete, StringComparison.OrdinalIgnoreCase));
 
         if (itemToRemove != null)
@@ -100,12 +102,14 @@ do {
         }
 
     }
-    else if (action.ToLower() == "list")
+    // list all items
+    else if (action == "list")
     {
         System.Console.WriteLine("");
         System.Console.WriteLine("Listing all items!");
         System.Console.WriteLine("");
 
+        // don't list if there aren't items, otherwise list them
         if(Items.Count == 0)
         {
             System.Console.WriteLine("No items in the food bank!");
@@ -120,16 +124,18 @@ do {
         }
 
     }
-    else if (action.ToLower() == "exit")
+    // message for exiting the food bank
+    else if (action == "exit")
     {
         System.Console.WriteLine("Thank you for visiting the food bank!");
         System.Console.WriteLine("Goodbye!");
     }
+    // error handling if they don't have a valid action
     else
     {
         System.Console.WriteLine(action + " is not a valid response.");
         System.Console.WriteLine("Try Again!");
     }
 
-
-} while (action.ToLower() != "exit");
+// exit the loop if they have typed exit
+} while (action != "exit");

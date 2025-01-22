@@ -52,7 +52,7 @@ do {
 
         // quantity
         System.Console.WriteLine("How many of the item is being added?");
-        while (!int.TryParse(System.Console.ReadLine(), out itemqty))
+        while (!int.TryParse(System.Console.ReadLine(), out itemqty) || itemqty <= 0)
         {
             System.Console.WriteLine("Please enter a valid number for the quantity.");
         }
